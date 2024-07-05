@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bheei8e4epe2m"]
+
+[ext_resource type="Script" path="res://camera.gd" id="1_tuasp"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.937798, 0.135476, -0.319658, 0, 0.920723, 0.390217, 0.347181, -0.365945, 0.863452, -1.67284, 1.14216, 2.11912)
+script = ExtResource("1_tuasp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FreeLookCamera"]

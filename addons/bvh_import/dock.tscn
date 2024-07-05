@@ -1,0 +1,363 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/bvh_import/main.gd" type="Script" id=1]
+
+[sub_resource type="ButtonGroup" id=1]
+
+[node name="BVHImport" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="."]
+offset_right = 480.0
+offset_bottom = 320.0
+custom_minimum_size = Vector2( 480, 320 )
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PackedStringArray( "*.bvh ; Biovision Hierarchy", "*.bvh ; Biovision Hierarchy", "*.bvh ; Biovision Hierarchy", "*.bvh ; Biovision Hierarchy", "*.bvh ; Biovision Hierarchy", "*.bvh ; Biovision Hierarchy", "*.bvh ; Biovision Hierarchy" )
+current_dir = "/GodotProjects/godot-bvh-import"
+current_path = "/GodotProjects/godot-bvh-import/"
+
+[node name="SkeletonPathLabel" type="Label" parent="."]
+offset_right = 1024.0
+offset_bottom = 14.0
+text = "Skeleton3D Path3D:"
+
+[node name="SkeletonPathInput" type="LineEdit" parent="."]
+offset_top = 18.0
+offset_right = 1024.0
+offset_bottom = 42.0
+size_flags_horizontal = 3
+text = "Armature"
+placeholder_text = "Armature Name"
+
+[node name="AnimationPlayerLabel" type="Label" parent="."]
+offset_top = 46.0
+offset_right = 1024.0
+offset_bottom = 60.0
+text = "Animation Player Name:"
+
+[node name="AnimationPlayerNameInput" type="LineEdit" parent="."]
+offset_top = 64.0
+offset_right = 1024.0
+offset_bottom = 88.0
+size_flags_horizontal = 3
+text = "AnimationPlayer"
+placeholder_text = "AnimtionPlayer"
+
+[node name="NewAnimNameLabel" type="Label" parent="."]
+offset_top = 92.0
+offset_right = 1024.0
+offset_bottom = 106.0
+text = "New Animation Name:"
+
+[node name="AnimationNameInput" type="LineEdit" parent="."]
+offset_top = 110.0
+offset_right = 1024.0
+offset_bottom = 134.0
+size_flags_horizontal = 3
+text = "BVH Animation 00"
+placeholder_text = "Animtion Name"
+
+[node name="HSeparator" type="HSeparator" parent="."]
+offset_top = 138.0
+offset_right = 1024.0
+offset_bottom = 142.0
+
+[node name="ShowImportTweaks" type="CheckButton" parent="."]
+offset_top = 146.0
+offset_right = 1024.0
+offset_bottom = 186.0
+text = "Show Import Tweaks"
+
+[node name="ImportTweaksGroup" type="VBoxContainer" parent="."]
+offset_top = 190.0
+offset_right = 1024.0
+offset_bottom = 450.0
+
+[node name="AutoscaleBVHOption" type="CheckBox" parent="ImportTweaksGroup"]
+offset_right = 1024.0
+offset_bottom = 24.0
+disabled = true
+text = "Autoscale BVH to Match Target Skeleton3D"
+
+[node name="IgnoreOffsetsOption" type="CheckBox" parent="ImportTweaksGroup"]
+offset_top = 28.0
+offset_right = 1024.0
+offset_bottom = 52.0
+pressed = true
+text = "Ignore Starting Offsets"
+
+[node name="AxisOrderingLabel" type="Label" parent="ImportTweaksGroup"]
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 70.0
+text = "Axis Ordering:"
+
+[node name="AxisOrderingOption" type="OptionButton" parent="ImportTweaksGroup"]
+offset_top = 74.0
+offset_right = 1024.0
+offset_bottom = 94.0
+group = SubResource( 1 )
+text = "Native"
+items = [ "Native", null, false, 0, null, "XYZ", null, false, 1, null, "XZY", null, false, 2, null, "YXZ", null, false, 3, null, "YZX", null, false, 4, null, "ZXY", null, false, 5, null, "ZYX", null, false, 6, null, "Reverse Native", null, false, 7, null ]
+selected = 0
+
+[node name="TransformScaleTweak" type="HBoxContainer" parent="ImportTweaksGroup"]
+offset_top = 98.0
+offset_right = 1024.0
+offset_bottom = 122.0
+
+[node name="TransformScaleLabel" type="Label" parent="ImportTweaksGroup/TransformScaleTweak"]
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 19.0
+text = "Animation Transform3D Rescaling: "
+
+[node name="TransformScaleSpinBox" type="SpinBox" parent="ImportTweaksGroup/TransformScaleTweak"]
+offset_left = 210.0
+offset_right = 1024.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+min_value = 0.001
+max_value = 10.0
+step = 0.001
+value = 1.0
+allow_greater = true
+
+[node name="XBasisLabel" type="Label" parent="ImportTweaksGroup"]
+offset_top = 126.0
+offset_right = 1024.0
+offset_bottom = 140.0
+text = "X Basis (Right) Vector:"
+
+[node name="XBasisTweak" type="HBoxContainer" parent="ImportTweaksGroup"]
+offset_top = 144.0
+offset_right = 1024.0
+offset_bottom = 168.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XLabel" type="Label" parent="ImportTweaksGroup/XBasisTweak"]
+offset_top = 5.0
+offset_right = 12.0
+offset_bottom = 19.0
+text = "X:"
+
+[node name="x" type="SpinBox" parent="ImportTweaksGroup/XBasisTweak"]
+offset_left = 16.0
+offset_right = 90.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+value = 1.0
+
+[node name="YLabel" type="Label" parent="ImportTweaksGroup/XBasisTweak"]
+offset_left = 94.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 19.0
+text = "Y:"
+
+[node name="y" type="SpinBox" parent="ImportTweaksGroup/XBasisTweak"]
+offset_left = 109.0
+offset_right = 183.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+
+[node name="ZLabel" type="Label" parent="ImportTweaksGroup/XBasisTweak"]
+offset_left = 187.0
+offset_top = 5.0
+offset_right = 199.0
+offset_bottom = 19.0
+text = "Z:"
+
+[node name="z" type="SpinBox" parent="ImportTweaksGroup/XBasisTweak"]
+offset_left = 203.0
+offset_right = 277.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YBasisLabel" type="Label" parent="ImportTweaksGroup"]
+offset_top = 172.0
+offset_right = 1024.0
+offset_bottom = 186.0
+text = "Y Basis (Up) Vector:"
+
+[node name="YBasisTweak" type="HBoxContainer" parent="ImportTweaksGroup"]
+offset_top = 190.0
+offset_right = 1024.0
+offset_bottom = 214.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XLabel" type="Label" parent="ImportTweaksGroup/YBasisTweak"]
+offset_top = 5.0
+offset_right = 12.0
+offset_bottom = 19.0
+text = "X:"
+
+[node name="x" type="SpinBox" parent="ImportTweaksGroup/YBasisTweak"]
+offset_left = 16.0
+offset_right = 90.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+
+[node name="YLabel" type="Label" parent="ImportTweaksGroup/YBasisTweak"]
+offset_left = 94.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 19.0
+text = "Y:"
+
+[node name="y" type="SpinBox" parent="ImportTweaksGroup/YBasisTweak"]
+offset_left = 109.0
+offset_right = 183.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+value = 1.0
+
+[node name="ZLabel" type="Label" parent="ImportTweaksGroup/YBasisTweak"]
+offset_left = 187.0
+offset_top = 5.0
+offset_right = 199.0
+offset_bottom = 19.0
+text = "Z:"
+
+[node name="z" type="SpinBox" parent="ImportTweaksGroup/YBasisTweak"]
+offset_left = 203.0
+offset_right = 277.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZBasisLabel" type="Label" parent="ImportTweaksGroup"]
+offset_top = 218.0
+offset_right = 1024.0
+offset_bottom = 232.0
+text = "Z Basis (Forward) Vector:"
+
+[node name="ZBasisTweak" type="HBoxContainer" parent="ImportTweaksGroup"]
+offset_top = 236.0
+offset_right = 1024.0
+offset_bottom = 260.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XLabel" type="Label" parent="ImportTweaksGroup/ZBasisTweak"]
+offset_top = 5.0
+offset_right = 12.0
+offset_bottom = 19.0
+text = "X:"
+
+[node name="x" type="SpinBox" parent="ImportTweaksGroup/ZBasisTweak"]
+offset_left = 16.0
+offset_right = 90.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+
+[node name="YLabel" type="Label" parent="ImportTweaksGroup/ZBasisTweak"]
+offset_left = 94.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 19.0
+text = "Y:"
+
+[node name="y" type="SpinBox" parent="ImportTweaksGroup/ZBasisTweak"]
+offset_left = 109.0
+offset_right = 183.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+
+[node name="ZLabel" type="Label" parent="ImportTweaksGroup/ZBasisTweak"]
+offset_left = 187.0
+offset_top = 5.0
+offset_right = 199.0
+offset_bottom = 19.0
+text = "Z:"
+
+[node name="z" type="SpinBox" parent="ImportTweaksGroup/ZBasisTweak"]
+offset_left = 203.0
+offset_right = 277.0
+offset_bottom = 24.0
+min_value = -1.0
+max_value = 1.0
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+offset_top = 454.0
+offset_right = 1024.0
+offset_bottom = 458.0
+
+[node name="ShowBoneRetargeting" type="CheckButton" parent="."]
+offset_top = 462.0
+offset_right = 1024.0
+offset_bottom = 502.0
+text = "Show Bone Retargeting Options"
+
+[node name="BoneRetargetingGroup" type="VBoxContainer" parent="."]
+visible = false
+offset_top = 242.0
+offset_right = 1024.0
+offset_bottom = 544.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BoneMapJSONEditor" type="TextEdit" parent="BoneRetargetingGroup"]
+offset_right = 1024.0
+offset_bottom = 278.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "{
+  \"bvh bone name\": \"skeleton bone name\"
+}"
+highlight_current_line = true
+syntax_highlighter = true
+show_line_numbers = true
+
+[node name="GenerateFromSkeletonButton" type="Button" parent="BoneRetargetingGroup"]
+offset_top = 282.0
+offset_right = 1024.0
+offset_bottom = 302.0
+text = "Generate from Skeleton3D"
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+offset_top = 506.0
+offset_right = 1024.0
+offset_bottom = 510.0
+
+[node name="ImportButton" type="Button" parent="."]
+offset_top = 514.0
+offset_right = 1024.0
+offset_bottom = 534.0
+text = "Import"
+
+[node name="ReimportButton" type="Button" parent="."]
+offset_top = 538.0
+offset_right = 1024.0
+offset_bottom = 558.0
+disabled = true
+text = "Reimport"
